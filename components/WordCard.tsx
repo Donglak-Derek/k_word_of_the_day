@@ -8,7 +8,6 @@ type Props = { word: Word };
 export default function WordCard({ word }: Props) {
   const [isFav, setIsFav] = useState(false);
 
-  // simple localStorage favorites keyed by word text
   useEffect(() => {
     try {
       const favs = JSON.parse(
@@ -53,9 +52,7 @@ export default function WordCard({ word }: Props) {
         await navigator.clipboard.writeText(`${shareText}\n${shareData.url}`);
         alert("Copied to clipboard!");
       }
-    } catch {
-      // ignore cancels
-    }
+    } catch {}
   }
 
   return (
@@ -71,15 +68,16 @@ export default function WordCard({ word }: Props) {
         <small style={{ opacity: 0.7 }}>K-AJC • Korean Word of the Day</small>
       </header>
 
+      {/* MAIN CONTENT */}
       <h1 style={{ fontSize: 42, margin: "6px 0" }}>{word.word}</h1>
       <div style={{ fontSize: 16, opacity: 0.8, marginBottom: 12 }}>
         {word.romanization} • <strong>{word.meaning}</strong>
       </div>
-
       <p style={{ fontSize: 18, lineHeight: 1.5, marginBottom: 18 }}>
         “{word.example}”
       </p>
 
+      {/* ACTIONS */}
       <div style={{ display: "flex", gap: 12 }}>
         <button
           onClick={share}

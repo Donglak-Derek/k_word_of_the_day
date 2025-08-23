@@ -2,6 +2,16 @@ export const metadata = {
   title: "K-AJC | Korean Word of the Day",
   description:
     "One Korean word a day with meaning, pronunciation, and a funny example.",
+  metadataBase: new URL("https://YOUR_DOMAIN_HERE"), // e.g., https://kajc.app
+  openGraph: {
+    title: "K-AJC | Korean Word of the Day",
+    description: "Learn Korean daily with culture & humor.",
+    images: ["/og"], // our dynamic route
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og"],
+  },
 };
 
 export default function RootLayout({
@@ -11,6 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="En">
+      <head>
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <meta name="theme-color" content="#111111" />
+      </head>
       <body
         style={{
           margin: 0,
