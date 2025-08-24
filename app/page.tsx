@@ -67,6 +67,10 @@ export default async function Page({
         </Link>
       </nav>
 
+      <p style={{ fontSize: 14, marginTop: 12 }}>
+        Test yourself: <a href="/quiz">Daily Quiz</a>
+      </p>
+
       <div style={{ marginTop: 10, fontSize: 14, opacity: 0.7 }}>
         Share card image: <code>/og?idx={idx}</code>
       </div>
