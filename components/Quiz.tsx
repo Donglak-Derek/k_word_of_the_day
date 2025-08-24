@@ -5,17 +5,16 @@ import words from "@/data/words.json";
 import { dayOfYearUTC, getTodayIndex } from "@/lib/getWordOfTheDay";
 import type { Word } from "@/lib/types";
 
-/* ---------- utilities ---------- */
-
-// UTC date key (one per day for everyone)
+/* ---------- utils ---------- */
+function normCat(c?: string) {
+  return (c || "misc").toLowerCase();
+}
 function utcDateKey(d = new Date()) {
   const y = d.getUTCFullYear();
   const m = String(d.getUTCMonth() + 1).padStart(2, "0");
   const day = String(d.getUTCDate()).padStart(2, "0");
   return `${y}-${m}-${day}`;
 }
-
-// Simple seedable PRNG (Mulberry32)
 function mulberry32(seed: number) {
   return function () {
     let t = (seed += 0x6d2b79f5);
@@ -24,8 +23,6 @@ function mulberry32(seed: number) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
-
-// Fisher–Yates shuffle with seed
 function shuffleSeeded<T>(arr: T[], seed: number): T[] {
   const a = arr.slice();
   const rand = mulberry32(seed);
@@ -35,81 +32,74 @@ function shuffleSeeded<T>(arr: T[], seed: number): T[] {
   }
   return a;
 }
-
-// Pick k unique indices from [0..len-1], excluding `exclude`, seeded
-function pickUniqueIndices(
-  len: number,
+function pickUniqueIndicesFromPool(
+  pool: number[],
   k: number,
-  exclude: Set<number>,
   seed: number
 ): number[] {
-  const pool: number[] = [];
-  for (let i = 0; i < len; i++) if (!exclude.has(i)) pool.push(i);
   const shuffled = shuffleSeeded(pool, seed);
   return shuffled.slice(0, k);
 }
 
-/* ---------- speech helpers ---------- */
-
-function speakOnce(text: string, lang: string) {
-  try {
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = lang;
-    window.speechSynthesis.cancel(); // stop any previous speech
-    window.speechSynthesis.speak(u);
-  } catch {
-    // ignore if unsupported
-  }
-}
-
-// Speak Hangul (ko-KR), then romanization (en-US)
+/* ---------- speech (optional; comment out if you don't want) ---------- */
 function speakWord(hangul: string, romanization: string) {
-  // chain two utterances for clearer learning
   try {
     const u1 = new SpeechSynthesisUtterance(hangul);
     u1.lang = "ko-KR";
     const u2 = new SpeechSynthesisUtterance(romanization);
     u2.lang = "en-US";
     window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(u1);
-    // when first ends, speak the romanization
     u1.onend = () => window.speechSynthesis.speak(u2);
+    window.speechSynthesis.speak(u1);
   } catch {}
 }
 
 /* ---------- component ---------- */
-
 export default function Quiz() {
-  const all = words as Word[];
+  const all = (words as Word[]).map((w) => ({
+    ...w,
+    category: normCat(w.category),
+  }));
   const len = all.length;
   const todayIdx = getTodayIndex();
   const today = all[todayIdx];
+  const todayCat = normCat(today.category);
 
-  // Build options using seeded randomness (stable for this day)
   const { options, correctIndex } = useMemo(() => {
-    const seed = dayOfYearUTC(); // change daily
-    const exclude = new Set<number>([todayIdx]);
+    const seed = dayOfYearUTC();
 
-    // pick two *random but stable* distractors
-    const [d1, d2] = pickUniqueIndices(len, 2, exclude, seed);
+    // build a pool of indices from same category (excluding today)
+    const sameCatPool = all
+      .map((w, i) => ({ i, c: normCat(w.category) }))
+      .filter(({ i, c }) => i !== todayIdx && c === todayCat)
+      .map(({ i }) => i);
+
+    let distractorIdxs: number[];
+
+    if (sameCatPool.length >= 2) {
+      distractorIdxs = pickUniqueIndicesFromPool(sameCatPool, 2, seed);
+    } else {
+      // fallback: global pool excluding today
+      const globalPool = all.map((_, i) => i).filter((i) => i !== todayIdx);
+      distractorIdxs = pickUniqueIndicesFromPool(globalPool, 2, seed);
+    }
 
     const raw = [
       { label: all[todayIdx].meaning, correct: true },
-      { label: all[d1].meaning, correct: false },
-      { label: all[d2].meaning, correct: false },
+      { label: all[distractorIdxs[0]].meaning, correct: false },
+      { label: all[distractorIdxs[1]].meaning, correct: false },
     ];
 
     const shuffled = shuffleSeeded(raw, seed + 999);
     const correctIndex = shuffled.findIndex((o) => o.correct);
     return { options: shuffled, correctIndex };
-  }, [len, all, todayIdx]);
+  }, [all, todayIdx, todayCat]);
 
   const [selected, setSelected] = useState<number | null>(null);
   const [result, setResult] = useState<"idle" | "correct" | "wrong">("idle");
   const [streak, setStreak] = useState<number>(0);
   const [lastDay, setLastDay] = useState<string | null>(null);
 
-  // Load streak on mount
   useEffect(() => {
     try {
       const s = Number(localStorage.getItem("kajc_quiz_streak") || "0");
@@ -119,11 +109,10 @@ export default function Quiz() {
     } catch {}
   }, []);
 
-  // Confetti (lazy-loaded)
-  async function confettiBurst(particleCount = 90, spread = 75) {
+  async function confettiBurst(p = 90, spread = 75) {
     try {
       const confetti = (await import("canvas-confetti")).default;
-      confetti({ particleCount, spread, origin: { y: 0.6 } });
+      confetti({ particleCount: p, spread, origin: { y: 0.6 } });
     } catch {}
   }
 
@@ -142,15 +131,8 @@ export default function Quiz() {
           localStorage.setItem("kajc_quiz_streak", String(next));
           localStorage.setItem("kajc_quiz_last", todayKey);
         } catch {}
-
-        // 🎉 extra burst on multiples of 5
-        if (next % 5 === 0) {
-          confettiBurst(200, 90); // bigger celebration
-        } else {
-          confettiBurst(90, 75);
-        }
+        confettiBurst(next % 5 === 0 ? 200 : 90, next % 5 === 0 ? 90 : 75);
       } else {
-        // already counted today, still give a small burst
         confettiBurst(70, 60);
       }
     }
@@ -183,9 +165,9 @@ export default function Quiz() {
         }}
       >
         <small style={{ opacity: 0.7 }}>
-          Daily Quiz • Day {dayOfYearUTC() + 1}
+          Daily Quiz • Day {dayOfYearUTC() + 1} •{" "}
+          <span style={{ textTransform: "capitalize" }}>{todayCat}</span>
         </small>
-        {/* 🔊 Speak button */}
         <button
           onClick={() => speakWord(today.word, today.romanization)}
           style={{
@@ -207,7 +189,8 @@ export default function Quiz() {
       </div>
 
       <p style={{ fontSize: 16, opacity: 0.9, margin: "6px 0 16px" }}>
-        What does this word mean?
+        What does this word mean?{" "}
+        <span style={{ opacity: 0.7 }}>(Category: {todayCat})</span>
       </p>
 
       <div style={{ display: "grid", gap: 10 }}>
@@ -227,7 +210,7 @@ export default function Quiz() {
             <button
               key={i}
               onClick={() => submit(i)}
-              disabled={result === "correct"} // lock after correct
+              disabled={result === "correct"}
               style={{
                 textAlign: "left",
                 padding: "12px 14px",
@@ -243,7 +226,6 @@ export default function Quiz() {
         })}
       </div>
 
-      {/* Feedback + Explanation */}
       {result !== "idle" && (
         <div style={{ marginTop: 12, fontSize: 14 }}>
           {result === "correct" ? "✅ Correct!" : "❌ Try again"}
@@ -260,7 +242,6 @@ export default function Quiz() {
         </div>
       )}
 
-      {/* Streak */}
       <div
         style={{
           marginTop: 16,

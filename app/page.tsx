@@ -83,6 +83,9 @@ export default async function Page({
         <p style={{ fontSize: 14 }}>
           Browse <a href="/archive">the archive</a>.
         </p>
+        <p style={{ fontSize: 14, marginTop: 12 }}>
+          ⭐ See your <a href="/favorites">Favorites</a>
+        </p>
       </footer>
     </main>
   );

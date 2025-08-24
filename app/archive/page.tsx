@@ -1,15 +1,34 @@
 "use client";
+
 import { useMemo, useState } from "react";
 import words from "@/data/words.json";
+import type { Word } from "@/lib/types";
+
+function normCat(c?: string) {
+  return (c || "misc").toLowerCase();
+}
 
 export default function ArchivePage() {
   const [q, setQ] = useState("");
-  const [cat, setCat] = useState("all"); // optional category later
+  const [cat, setCat] = useState("all");
+
+  const all = useMemo(
+    () =>
+      (words as Word[]).map((w) => ({ ...w, category: normCat(w.category) })),
+    []
+  );
+
+  // derive category list from data
+  const categories = useMemo(() => {
+    const set = new Set<string>();
+    all.forEach((w) => set.add(normCat(w.category)));
+    return ["all", ...Array.from(set).sort()];
+  }, [all]);
 
   const data = useMemo(() => {
     const needle = q.trim().toLowerCase();
-    return (words as any[]).filter((w) => {
-      const okCat = cat === "all" || w.category === cat;
+    return all.filter((w) => {
+      const okCat = cat === "all" || normCat(w.category) === cat;
       if (!okCat) return false;
       if (!needle) return true;
       return (
@@ -19,18 +38,27 @@ export default function ArchivePage() {
         w.example.toLowerCase().includes(needle)
       );
     });
-  }, [q, cat]);
+  }, [all, q, cat]);
 
   return (
     <main>
-      <h1>Archive</h1>
-      <div style={{ display: "flex", gap: 12, margin: "12px 0 20px" }}>
+      <h1 style={{ marginBottom: 12 }}>Archive</h1>
+
+      <div
+        style={{
+          display: "flex",
+          gap: 12,
+          margin: "12px 0 20px",
+          flexWrap: "wrap",
+        }}
+      >
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search word / meaning / example"
           style={{
             flex: 1,
+            minWidth: 220,
             padding: 10,
             border: "1px solid #ddd",
             borderRadius: 8,
@@ -41,25 +69,35 @@ export default function ArchivePage() {
           onChange={(e) => setCat(e.target.value)}
           style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
         >
-          <option value="all">All</option>
-          {/* add categories to your JSON if you want */}
-          <option value="work">Work</option>
-          <option value="slang">Slang</option>
-          <option value="food">Food</option>
+          {categories.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
         </select>
       </div>
 
-      <ul style={{ listStyle: "none", padding: 0 }}>
+      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
         {data.map((w, i) => (
           <li
-            key={i}
+            key={`${w.word}-${i}`}
             style={{ padding: "12px 0", borderBottom: "1px solid #eee" }}
           >
-            <div style={{ fontSize: 18, fontWeight: 600 }}>
-              {w.word} <span style={{ opacity: 0.6 }}>({w.romanization})</span>
+            <div style={{ fontSize: 20, fontWeight: 600 }}>
+              {w.word}{" "}
+              <span style={{ opacity: 0.6, fontWeight: 400 }}>
+                ({w.romanization})
+              </span>
             </div>
-            <div>{w.meaning}</div>
-            <div style={{ opacity: 0.75, marginTop: 6 }}>“{w.example}”</div>
+            <div style={{ opacity: 0.85 }}>
+              <strong style={{ textTransform: "capitalize" }}>
+                {normCat(w.category)}
+              </strong>{" "}
+              • {w.meaning}
+            </div>
+            <div style={{ fontSize: 14, opacity: 0.7, marginTop: 6 }}>
+              “{w.example}”
+            </div>
           </li>
         ))}
       </ul>

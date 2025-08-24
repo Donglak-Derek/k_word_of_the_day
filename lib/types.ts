@@ -3,4 +3,5 @@ export type Word = {
   romanization: string;
   meaning: string;
   example: string;
+  category?: string;
 };
