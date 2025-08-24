@@ -3,42 +3,81 @@
 import { useEffect, useMemo, useState } from "react";
 import words from "@/data/words.json";
 import { dayOfYearUTC, getTodayIndex } from "@/lib/getWordOfTheDay";
+import type { Word } from "@/lib/types";
 
-type Word = {
-  word: string;
-  romanization: string;
-  meaning: string;
-  example: string;
-};
+/* ---------- utilities ---------- */
 
+// UTC date key (one per day for everyone)
 function utcDateKey(d = new Date()) {
-  // YYYY-MM-DD in UTC so everyone gets the same "day"
   const y = d.getUTCFullYear();
   const m = String(d.getUTCMonth() + 1).padStart(2, "0");
   const day = String(d.getUTCDate()).padStart(2, "0");
   return `${y}-${m}-${day}`;
 }
 
+// Simple seedable PRNG (Mulberry32)
+function mulberry32(seed: number) {
+  return function () {
+    let t = (seed += 0x6d2b79f5);
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// Fisher–Yates shuffle with seed
+function shuffleSeeded<T>(arr: T[], seed: number): T[] {
+  const a = arr.slice();
+  const rand = mulberry32(seed);
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Pick k unique indices from [0..len-1], excluding `exclude`, seeded
+function pickUniqueIndices(
+  len: number,
+  k: number,
+  exclude: Set<number>,
+  seed: number
+): number[] {
+  const pool: number[] = [];
+  for (let i = 0; i < len; i++) if (!exclude.has(i)) pool.push(i);
+  const shuffled = shuffleSeeded(pool, seed);
+  return shuffled.slice(0, k);
+}
+
+/* ---------- component ---------- */
+
 export default function Quiz() {
-  const len = (words as Word[]).length;
+  const all = words as Word[];
+  const len = all.length;
   const todayIdx = getTodayIndex();
-  const today = (words as Word[])[todayIdx];
+  const today = all[todayIdx];
 
-  // Deterministic distractors based on today's index
-  const distractor1 = (words as Word[])[(todayIdx + 7) % len];
-  const distractor2 = (words as Word[])[(todayIdx + 13) % len];
+  // Build options using seeded randomness (stable for this day)
+  const { options, correctIndex } = useMemo(() => {
+    const seed = dayOfYearUTC(); // change daily
+    const exclude = new Set<number>([todayIdx]);
 
-  // Build options: 3 meanings, shuffled deterministically by today's index
-  const options = useMemo(() => {
-    const base = [
-      { label: today.meaning, correct: true },
-      { label: distractor1.meaning, correct: false },
-      { label: distractor2.meaning, correct: false },
+    // pick two *random but stable* distractor indices
+    const [d1, d2] = pickUniqueIndices(len, 2, exclude, seed);
+
+    // build raw options: label = meaning, carry a "correct" boolean
+    const raw = [
+      { label: all[todayIdx].meaning, correct: true },
+      { label: all[d1].meaning, correct: false },
+      { label: all[d2].meaning, correct: false },
     ];
-    // rotate array by (todayIdx % 3) to avoid true always first
-    const rot = todayIdx % 3;
-    return [...base.slice(rot), ...base.slice(0, rot)];
-  }, [todayIdx, today.meaning, distractor1.meaning, distractor2.meaning]);
+
+    // shuffle with seed
+    const shuffled = shuffleSeeded(raw, seed + 999); // offset so pick != order
+    const correctIndex = shuffled.findIndex((o) => o.correct);
+
+    return { options: shuffled, correctIndex };
+  }, [len, all, todayIdx]);
 
   const [selected, setSelected] = useState<number | null>(null);
   const [result, setResult] = useState<"idle" | "correct" | "wrong">("idle");
@@ -55,12 +94,20 @@ export default function Quiz() {
     } catch {}
   }, []);
 
+  async function fireConfetti() {
+    try {
+      const confetti = (await import("canvas-confetti")).default;
+      confetti({ particleCount: 90, spread: 75, origin: { y: 0.6 } });
+    } catch {
+      // ignore if not supported
+    }
+  }
+
   function submit(i: number) {
     setSelected(i);
-    const ok = options[i].correct;
+    const ok = i === correctIndex;
     setResult(ok ? "correct" : "wrong");
 
-    // If correct and not already counted today, bump streak
     if (ok) {
       const todayKey = utcDateKey();
       if (lastDay !== todayKey) {
@@ -72,6 +119,7 @@ export default function Quiz() {
           localStorage.setItem("kajc_quiz_last", todayKey);
         } catch {}
       }
+      fireConfetti();
     }
   }
 
@@ -111,13 +159,16 @@ export default function Quiz() {
       <div style={{ display: "grid", gap: 10 }}>
         {options.map((opt, i) => {
           const isSelected = selected === i;
-          const showCorrect = result !== "idle" && opt.correct;
-          const showWrong = result === "wrong" && isSelected && !opt.correct;
+          const showCorrect = result !== "idle" && i === correctIndex;
+          const showWrong =
+            result === "wrong" && isSelected && i !== correctIndex;
           const border = showCorrect
             ? "#16a34a"
             : showWrong
             ? "#ef4444"
             : "#ddd";
+          const bg = showCorrect ? "#f0fdf4" : showWrong ? "#fef2f2" : "white";
+
           return (
             <button
               key={i}
@@ -128,11 +179,7 @@ export default function Quiz() {
                 padding: "12px 14px",
                 borderRadius: 12,
                 border: `1px solid ${border}`,
-                background: showCorrect
-                  ? "#f0fdf4"
-                  : showWrong
-                  ? "#fef2f2"
-                  : "white",
+                background: bg,
                 cursor: "pointer",
               }}
             >
@@ -142,10 +189,20 @@ export default function Quiz() {
         })}
       </div>
 
-      {/* Feedback */}
+      {/* Feedback + Explanation */}
       {result !== "idle" && (
         <div style={{ marginTop: 12, fontSize: 14 }}>
           {result === "correct" ? "✅ Correct!" : "❌ Try again"}
+          {result === "correct" && (
+            <div style={{ marginTop: 8, opacity: 0.8 }}>
+              <div>
+                <strong>Explanation:</strong> {today.meaning}
+              </div>
+              <div style={{ marginTop: 4, fontStyle: "italic" }}>
+                “{today.example}”
+              </div>
+            </div>
+          )}
         </div>
       )}
 
