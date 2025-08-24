@@ -49,6 +49,34 @@ function pickUniqueIndices(
   return shuffled.slice(0, k);
 }
 
+/* ---------- speech helpers ---------- */
+
+function speakOnce(text: string, lang: string) {
+  try {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang;
+    window.speechSynthesis.cancel(); // stop any previous speech
+    window.speechSynthesis.speak(u);
+  } catch {
+    // ignore if unsupported
+  }
+}
+
+// Speak Hangul (ko-KR), then romanization (en-US)
+function speakWord(hangul: string, romanization: string) {
+  // chain two utterances for clearer learning
+  try {
+    const u1 = new SpeechSynthesisUtterance(hangul);
+    u1.lang = "ko-KR";
+    const u2 = new SpeechSynthesisUtterance(romanization);
+    u2.lang = "en-US";
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u1);
+    // when first ends, speak the romanization
+    u1.onend = () => window.speechSynthesis.speak(u2);
+  } catch {}
+}
+
 /* ---------- component ---------- */
 
 export default function Quiz() {
@@ -62,20 +90,17 @@ export default function Quiz() {
     const seed = dayOfYearUTC(); // change daily
     const exclude = new Set<number>([todayIdx]);
 
-    // pick two *random but stable* distractor indices
+    // pick two *random but stable* distractors
     const [d1, d2] = pickUniqueIndices(len, 2, exclude, seed);
 
-    // build raw options: label = meaning, carry a "correct" boolean
     const raw = [
       { label: all[todayIdx].meaning, correct: true },
       { label: all[d1].meaning, correct: false },
       { label: all[d2].meaning, correct: false },
     ];
 
-    // shuffle with seed
-    const shuffled = shuffleSeeded(raw, seed + 999); // offset so pick != order
+    const shuffled = shuffleSeeded(raw, seed + 999);
     const correctIndex = shuffled.findIndex((o) => o.correct);
-
     return { options: shuffled, correctIndex };
   }, [len, all, todayIdx]);
 
@@ -94,13 +119,12 @@ export default function Quiz() {
     } catch {}
   }, []);
 
-  async function fireConfetti() {
+  // Confetti (lazy-loaded)
+  async function confettiBurst(particleCount = 90, spread = 75) {
     try {
       const confetti = (await import("canvas-confetti")).default;
-      confetti({ particleCount: 90, spread: 75, origin: { y: 0.6 } });
-    } catch {
-      // ignore if not supported
-    }
+      confetti({ particleCount, spread, origin: { y: 0.6 } });
+    } catch {}
   }
 
   function submit(i: number) {
@@ -118,8 +142,17 @@ export default function Quiz() {
           localStorage.setItem("kajc_quiz_streak", String(next));
           localStorage.setItem("kajc_quiz_last", todayKey);
         } catch {}
+
+        // 🎉 extra burst on multiples of 5
+        if (next % 5 === 0) {
+          confettiBurst(200, 90); // bigger celebration
+        } else {
+          confettiBurst(90, 75);
+        }
+      } else {
+        // already counted today, still give a small burst
+        confettiBurst(70, 60);
       }
-      fireConfetti();
     }
   }
 
@@ -141,10 +174,31 @@ export default function Quiz() {
         boxShadow: "0 6px 30px rgba(0,0,0,0.05)",
       }}
     >
-      <header style={{ marginBottom: 10 }}>
+      <header
+        style={{
+          marginBottom: 10,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <small style={{ opacity: 0.7 }}>
           Daily Quiz • Day {dayOfYearUTC() + 1}
         </small>
+        {/* 🔊 Speak button */}
+        <button
+          onClick={() => speakWord(today.word, today.romanization)}
+          style={{
+            padding: "6px 10px",
+            borderRadius: 10,
+            border: "1px solid #ddd",
+            background: "white",
+            cursor: "pointer",
+          }}
+          title="Pronounce (ko-KR), then romanization"
+        >
+          🔊 Speak
+        </button>
       </header>
 
       <h1 style={{ fontSize: 36, margin: "6px 0" }}>{today.word}</h1>
@@ -194,7 +248,7 @@ export default function Quiz() {
         <div style={{ marginTop: 12, fontSize: 14 }}>
           {result === "correct" ? "✅ Correct!" : "❌ Try again"}
           {result === "correct" && (
-            <div style={{ marginTop: 8, opacity: 0.8 }}>
+            <div style={{ marginTop: 8, opacity: 0.85 }}>
               <div>
                 <strong>Explanation:</strong> {today.meaning}
               </div>
