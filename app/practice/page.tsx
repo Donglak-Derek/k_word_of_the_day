@@ -1,12 +1,12 @@
-import Quiz from "@/components/Quiz";
 import Link from "next/link";
+import PracticeQuiz from "../../components/PracticeQuiz";
 
-export const metadata = { title: "Daily Quiz • K-AJC" };
+export const metadata = { title: "Practice by Category • K-AJC" };
 
-export default function QuizPage() {
+export default function PracticePage() {
   return (
     <main>
-      <Quiz />
+      <PracticeQuiz />
       <nav style={{ marginTop: 16 }}>
         <Link
           href="/"
@@ -19,11 +19,6 @@ export default function QuizPage() {
           ← Back to Word of the Day
         </Link>
       </nav>
-      <footer>
-        <p style={{ fontSize: 14, marginTop: 12 }}>
-          Want more? <a href="/practice">Category practice</a>
-        </p>
-      </footer>
     </main>
   );
 }

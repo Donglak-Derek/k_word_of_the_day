@@ -71,6 +71,10 @@ export default async function Page({
         Test yourself: <a href="/quiz">Daily Quiz</a>
       </p>
 
+      <p style={{ fontSize: 14, marginTop: 12 }}>
+        Practice by category: <a href="/practice">Start practicing</a>
+      </p>
+
       <div style={{ marginTop: 10, fontSize: 14, opacity: 0.7 }}>
         Share card image: <code>/og?idx={idx}</code>
       </div>
