@@ -2,7 +2,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import words from "@/data/words.json";
+import { getAllWordsValidated } from "@/lib/words";
+const words = getAllWordsValidated();
+
 import type { Word } from "@/lib/types";
 
 /* ---------------- helpers ---------------- */

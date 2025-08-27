@@ -1,7 +1,1 @@
-export type Word = {
-  word: string;
-  romanization: string;
-  meaning: string;
-  example: string;
-  category?: string;
-};
+export type { Word } from "@/lib/wordSchema";

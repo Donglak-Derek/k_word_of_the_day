@@ -1,0 +1,54 @@
+[
+  {
+    "id": "bap",
+    "slug": "bap",
+    "word": "밥",
+    "romanization": "bap",
+    "meaning": "Cooked rice / Meal",
+    "example": "Did you eat 밥 yet?",
+    "category": "everyday",
+    "tags": ["food"],
+    "level": "beginner"
+  },
+  {
+    "id": "ppalli",
+    "slug": "ppalli",
+    "word": "빨리",
+    "romanization": "ppalli",
+    "meaning": "Quickly / Hurry",
+    "example": "빨리 와! We’re late.",
+    "category": "everyday",
+    "tags": ["speed"],
+    "level": "beginner"
+  },
+  {
+    "id": "mul",
+    "slug": "mul",
+    "word": "물",
+    "romanization": "mul",
+    "meaning": "Water",
+    "example": "Can I get some 물, please?",
+    "category": "everyday",
+    "level": "beginner"
+  },
+  {
+    "id": "jip",
+    "slug": "jip",
+    "word": "집",
+    "romanization": "jip",
+    "meaning": "House / Home",
+    "example": "Let’s meet at my 집.",
+    "category": "everyday",
+    "level": "beginner"
+  },
+  {
+    "id": "chingu",
+    "slug": "chingu",
+    "word": "친구",
+    "romanization": "chingu",
+    "meaning": "Friend",
+    "example": "He’s my best 친구.",
+    "category": "everyday",
+    "level": "beginner"
+  }
+]

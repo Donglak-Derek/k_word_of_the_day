@@ -1,0 +1,58 @@
+[
+  {
+    "id": "nunchi",
+    "slug": "nunchi",
+    "word": "눈치",
+    "romanization": "nunchi",
+    "meaning": "Ability to read the room",
+    "example": "He clapped at the wrong time during the wedding… zero 눈치.",
+    "category": "culture",
+    "tags": ["social-skills"],
+    "level": "intermediate",
+    "synonyms": ["분위기 파악"],
+    "notes": "Essential Korean cultural skill."
+  },
+  {
+    "id": "jeong",
+    "slug": "jeong",
+    "word": "정",
+    "romanization": "jeong",
+    "meaning": "Deep emotional bond or attachment",
+    "example": "Even after the breakup, there was still 정 between them.",
+    "category": "culture",
+    "tags": ["emotion"],
+    "level": "advanced"
+  },
+  {
+    "id": "han",
+    "slug": "han",
+    "word": "한",
+    "romanization": "han",
+    "meaning": "Collective sorrow / deep resentment",
+    "example": "Korean literature often reflects the feeling of 한.",
+    "category": "culture",
+    "level": "advanced"
+  },
+  {
+    "id": "chimaek",
+    "slug": "chimaek",
+    "word": "치맥",
+    "romanization": "chimaek",
+    "meaning": "Chicken and beer combo",
+    "example": "Friday night? Let’s have 치맥!",
+    "category": "culture",
+    "tags": ["food", "social"],
+    "level": "beginner"
+  },
+  {
+    "id": "kimjang",
+    "slug": "kimjang",
+    "word": "김장",
+    "romanization": "kimjang",
+    "meaning": "Kimchi-making season",
+    "example": "Families gather every winter for 김장.",
+    "category": "culture",
+    "tags": ["tradition"],
+    "level": "intermediate"
+  }
+]

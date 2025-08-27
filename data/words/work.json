@@ -1,0 +1,57 @@
+[
+  {
+    "id": "hwesik",
+    "slug": "hwesik",
+    "word": "회식",
+    "romanization": "hwesik",
+    "meaning": "Company dinner",
+    "example": "We had a 회식 after finishing the project.",
+    "category": "work",
+    "tags": ["office-culture"],
+    "level": "intermediate"
+  },
+  {
+    "id": "seonsaengnim",
+    "slug": "seonsaengnim",
+    "word": "선생님",
+    "romanization": "seonsaengnim",
+    "meaning": "Teacher / polite title",
+    "example": "Always call your instructor 선생님.",
+    "category": "work",
+    "tags": ["title"],
+    "level": "beginner"
+  },
+  {
+    "id": "hoegye",
+    "slug": "hoegye",
+    "word": "회의",
+    "romanization": "hoeui",
+    "meaning": "Meeting",
+    "example": "The team has a 회의 every Monday morning.",
+    "category": "work",
+    "tags": ["office"],
+    "level": "beginner"
+  },
+  {
+    "id": "daeri",
+    "slug": "daeri",
+    "word": "대리",
+    "romanization": "daeri",
+    "meaning": "Assistant manager (job title)",
+    "example": "She got promoted to 대리 last year.",
+    "category": "work",
+    "tags": ["rank"],
+    "level": "intermediate"
+  },
+  {
+    "id": "pyeongga",
+    "slug": "pyeongga",
+    "word": "평가",
+    "romanization": "pyeongga",
+    "meaning": "Evaluation",
+    "example": "We had an annual 평가 with our manager.",
+    "category": "work",
+    "tags": ["office"],
+    "level": "advanced"
+  }
+]

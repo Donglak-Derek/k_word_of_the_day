@@ -1,8 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import words from "@/data/words.json";
+import { getAllWordsValidated } from "@/lib/words";
+
 import type { Word } from "@/lib/types";
+
+const words = getAllWordsValidated();
 
 function normCat(c?: string) {
   return (c || "misc").toLowerCase();

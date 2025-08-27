@@ -1,0 +1,55 @@
+[
+  {
+    "id": "hwaiting",
+    "slug": "hwaiting",
+    "word": "화이팅",
+    "romanization": "hwaiting",
+    "meaning": "Cheer up / You got this!",
+    "example": "Before the test: '화이팅!'",
+    "category": "slang",
+    "level": "beginner"
+  },
+  {
+    "id": "kkondae",
+    "slug": "kkondae",
+    "word": "꼰대",
+    "romanization": "kkondae",
+    "meaning": "Old-fashioned, bossy person",
+    "example": "My boss is a 꼰대, always saying 'back in my day...'.",
+    "category": "slang",
+    "level": "intermediate"
+  },
+  {
+    "id": "jjan",
+    "slug": "jjan",
+    "word": "짠",
+    "romanization": "jjan",
+    "meaning": "Cheers! (clinking glasses)",
+    "example": "Raise your glass: 짠!",
+    "category": "slang",
+    "tags": ["drinking"],
+    "level": "beginner"
+  },
+  {
+    "id": "otoke",
+    "slug": "otoke",
+    "word": "어떡해",
+    "romanization": "eotteokhae",
+    "meaning": "Oh no! / What should I do?",
+    "example": "You dropped your phone? '어떡해!'",
+    "category": "slang",
+    "tags": ["reaction"],
+    "level": "beginner"
+  },
+  {
+    "id": "meokbang",
+    "slug": "meokbang",
+    "word": "먹방",
+    "romanization": "meokbang",
+    "meaning": "Food-eating broadcast",
+    "example": "She became famous with her YouTube 먹방 videos.",
+    "category": "slang",
+    "tags": ["internet"],
+    "level": "intermediate"
+  }
+]

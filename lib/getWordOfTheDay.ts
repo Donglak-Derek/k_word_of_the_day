@@ -1,4 +1,6 @@
-import words from "@/data/words.json";
+import { getAllWordsValidated } from "@/lib/words";
+const words = getAllWordsValidated();
+
 import type { Word } from "./types";
 
 export function dayOfYearUTC(d = new Date()): number {

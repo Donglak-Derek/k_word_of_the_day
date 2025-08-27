@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import words from "@/data/words.json";
+import { getAllWordsValidated } from "@/lib/words";
+const words = getAllWordsValidated();
 
 function dayOfYearUTC(d = new Date()): number {
   const start = Date.UTC(d.getUTCFullYear(), 0, 1);

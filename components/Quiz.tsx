@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import words from "@/data/words.json";
+import { getAllWordsValidated } from "@/lib/words";
+const words = getAllWordsValidated();
+
 import { dayOfYearUTC, getTodayIndex } from "@/lib/getWordOfTheDay";
 import type { Word } from "@/lib/types";
 

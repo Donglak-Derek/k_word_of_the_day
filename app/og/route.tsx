@@ -1,6 +1,7 @@
 /* @ts-ignore */
 import { ImageResponse } from "@vercel/og";
-import words from "@/data/words.json";
+import { getAllWordsValidated } from "@/lib/words";
+const words = getAllWordsValidated();
 
 export const runtime = "edge";
 
