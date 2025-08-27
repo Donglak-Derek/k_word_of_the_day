@@ -1,34 +1,37 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { getAllWordsValidated } from "@/lib/words";
-
-import type { Word } from "@/lib/types";
-
-const words = getAllWordsValidated();
+import type { Word } from "@/lib/wordSchema";
+import WordListItem from "@/components/WordListItem";
 
 function normCat(c?: string) {
   return (c || "misc").toLowerCase();
 }
 
 export default function ArchivePage() {
-  const [q, setQ] = useState("");
+  const searchParams = useSearchParams();
+
+  // pull `q` param from URL
+  const qParam = searchParams.get("q") || "";
+  const [q, setQ] = useState(qParam);
+
+  // keep local state in sync if URL changes
+  useEffect(() => {
+    setQ(qParam);
+  }, [qParam]);
+
   const [cat, setCat] = useState("all");
 
-  const all = useMemo(
-    () =>
-      (words as Word[]).map((w) => ({ ...w, category: normCat(w.category) })),
-    []
-  );
-
-  // derive category list from data
-  const categories = useMemo(() => {
-    const set = new Set<string>();
-    all.forEach((w) => set.add(normCat(w.category)));
-    return ["all", ...Array.from(set).sort()];
+  const all = useMemo<Word[]>(() => getAllWordsValidated(), []);
+  const cats = useMemo(() => {
+    const s = new Set<string>();
+    all.forEach((w) => s.add(normCat(w.category)));
+    return ["all", ...Array.from(s).sort()];
   }, [all]);
 
-  const data = useMemo(() => {
+  const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
     return all.filter((w) => {
       const okCat = cat === "all" || normCat(w.category) === cat;
@@ -72,7 +75,7 @@ export default function ArchivePage() {
           onChange={(e) => setCat(e.target.value)}
           style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
         >
-          {categories.map((c) => (
+          {cats.map((c) => (
             <option key={c} value={c}>
               {c}
             </option>
@@ -81,27 +84,8 @@ export default function ArchivePage() {
       </div>
 
       <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-        {data.map((w, i) => (
-          <li
-            key={`${w.word}-${i}`}
-            style={{ padding: "12px 0", borderBottom: "1px solid #eee" }}
-          >
-            <div style={{ fontSize: 20, fontWeight: 600 }}>
-              {w.word}{" "}
-              <span style={{ opacity: 0.6, fontWeight: 400 }}>
-                ({w.romanization})
-              </span>
-            </div>
-            <div style={{ opacity: 0.85 }}>
-              <strong style={{ textTransform: "capitalize" }}>
-                {normCat(w.category)}
-              </strong>{" "}
-              • {w.meaning}
-            </div>
-            <div style={{ fontSize: 14, opacity: 0.7, marginTop: 6 }}>
-              “{w.example}”
-            </div>
-          </li>
+        {filtered.map((w) => (
+          <WordListItem key={w.id} w={w} />
         ))}
       </ul>
     </main>

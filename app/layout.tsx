@@ -1,3 +1,6 @@
+import "./globals.css";
+import NavBar from "@/components/NavBar";
+
 export const metadata = {
   title: "K-AJC | Korean Word of the Day",
   description:
@@ -31,9 +34,10 @@ export default function RootLayout({
           fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
         }}
       >
-        <div style={{ maxWidth: 720, margin: "0 auto", padding: "24px" }}>
+        <NavBar />
+        <main style={{ maxWidth: 960, margin: "0 auto", padding: "24px" }}>
           {children}
-        </div>
+        </main>
       </body>
     </html>
   );

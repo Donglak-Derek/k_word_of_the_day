@@ -3,6 +3,8 @@ import { WordZ, type Word } from "@/lib/wordSchema";
 // static imports (add more categories when you create files)
 import cultureRaw from "@/data/words/culture.json";
 import slangRaw from "@/data/words/slang.json";
+import everydayRaw from "@/data/words/everyday.json";
+import workRaw from "@/data/words/work.json";
 
 function validateArray(raw: unknown[], label: string): Word[] {
   try {
@@ -17,13 +19,19 @@ function validateArray(raw: unknown[], label: string): Word[] {
 export function getAllWordsValidated(): Word[] {
   const culture = validateArray(cultureRaw as unknown[], "culture");
   const slang = validateArray(slangRaw as unknown[], "slang");
-  const all = [...culture, ...slang];
+  const everyday = validateArray(everydayRaw as unknown[], "everyday");
+  const work = validateArray(workRaw as unknown[], "work");
+
+  const all = [...culture, ...slang, ...everyday, ...work];
 
   // duplicate id guard (nice safety)
-  const seen = new Set<string>();
+  const ids = new Set<string>(),
+    slugs = new Set<string>();
   for (const w of all) {
-    if (seen.has(w.id)) throw new Error(`Duplicate id: ${w.id}`);
-    seen.add(w.id);
+    if (ids.has(w.id)) throw new Error(`Duplicate id: ${w.id}`);
+    if (slugs.has(w.slug)) throw new Error(`Duplicate slug: ${w.slug}`);
+    ids.add(w.id);
+    slugs.add(w.slug);
   }
   return all;
 }
