@@ -76,14 +76,16 @@ export default async function Page({
       </p>
 
       <div style={{ marginTop: 10, fontSize: 14, opacity: 0.7 }}>
-        Share card image: <code>/og?idx={idx}</code>
+        <p>
+          Share card image:{" "}
+          <a href={`/og?idx=${idx}`} target="_blank" rel="noopener noreferrer">
+            Open
+          </a>
+        </p>
       </div>
 
       <footer style={{ marginTop: 24, opacity: 0.7 }}>
-        <p>
-          Tip: Add to Home Screen for quick access. • Built by K-AJC (Korean
-          Ajusshi)
-        </p>
+        <p>Tip: Add to Home Screen for quick access. • Built by K-LOL</p>
         <p style={{ fontSize: 14 }}>
           Browse <a href="/archive">the archive</a>.
         </p>

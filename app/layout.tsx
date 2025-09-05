@@ -1,19 +1,21 @@
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "K-AJC | Korean Word of the Day",
-  description:
-    "One Korean word a day with meaning, pronunciation, and a funny example.",
-  metadataBase: new URL("https://YOUR_DOMAIN_HERE"), // e.g., https://kajc.app
+export const metadata: Metadata = {
+  metadataBase: new URL("https://k-word-of-the-day.vercel.app"),
+  title: "K-SNACK | Korean Word of the Day",
+  description: "Snack-sized Korean, powered by comedy.",
   openGraph: {
-    title: "K-AJC | Korean Word of the Day",
-    description: "Learn Korean daily with culture & humor.",
-    images: ["/og"], // our dynamic route
+    title: "K-SNACK | Korean Word of the Day",
+    description: "Snack-sized Korean, powered by comedy.",
+    images: ["/og.png"], // our dynamic route
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og"],
+    title: "K Word of the Day",
+    description: "Snack-sized Korean, powered by comedy.",
+    images: ["/og.png"],
   },
 };
 
