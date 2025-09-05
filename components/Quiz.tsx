@@ -2,10 +2,11 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { getAllWordsValidated } from "@/lib/words";
-const words = getAllWordsValidated();
+import type { Word } from "@/lib/types";
+
+const words: Word[] = getAllWordsValidated();
 
 import { dayOfYearUTC, getTodayIndex } from "@/lib/getWordOfTheDay";
-import type { Word } from "@/lib/types";
 
 /* ---------- utils ---------- */
 function normCat(c?: string) {
@@ -58,11 +59,11 @@ function speakWord(hangul: string, romanization: string) {
 
 /* ---------- component ---------- */
 export default function Quiz() {
-  const all = (words as Word[]).map((w) => ({
+  const all = words.map((w) => ({
     ...w,
     category: normCat(w.category),
   }));
-  const len = all.length;
+  // const _len = all.length;
   const todayIdx = getTodayIndex();
   const today = all[todayIdx];
   const todayCat = normCat(today.category);

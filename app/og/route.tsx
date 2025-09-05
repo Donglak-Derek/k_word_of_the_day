@@ -1,7 +1,8 @@
-/* @ts-ignore */
 import { ImageResponse } from "@vercel/og";
 import { getAllWordsValidated } from "@/lib/words";
-const words = getAllWordsValidated();
+import type { Word } from "@/lib/wordSchema";
+
+const words: Word[] = getAllWordsValidated();
 
 export const runtime = "edge";
 
@@ -10,7 +11,7 @@ export async function GET(req: Request) {
   const idxParam = searchParams.get("idx");
   const idx = idxParam ? parseInt(idxParam, 10) : 0;
 
-  const word = (words as any[])[idx % words.length];
+  const word: Word = words[idx % words.length];
 
   return new ImageResponse(
     (
@@ -28,7 +29,7 @@ export async function GET(req: Request) {
         }}
       >
         <div style={{ fontSize: 28, opacity: 0.7 }}>
-          K-AJC • Word of the Day
+          K-SNACK • Word of the Day
         </div>
         <div style={{ fontSize: 96, fontWeight: 800, margin: "10px 0" }}>
           {word.word}

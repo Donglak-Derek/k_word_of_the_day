@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import { getAllWordsValidated } from "@/lib/words";
-const words = getAllWordsValidated();
+import type { Word } from "@/lib/wordSchema";
+
+const words: Word[] = getAllWordsValidated();
 
 export async function GET() {
-  const idx = Math.floor(Math.random() * (words as any[]).length);
-  return NextResponse.json((words as any[])[idx]);
+  const idx = Math.floor(Math.random() * words.length);
+  const word: Word = words[idx];
+  return NextResponse.json<Word>(word, { status: 200 });
 }

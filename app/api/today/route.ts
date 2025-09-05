@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getAllWordsValidated } from "@/lib/words";
-const words = getAllWordsValidated();
+import type { Word } from "@/lib/wordSchema";
+
+const words: Word[] = getAllWordsValidated();
 
 function dayOfYearUTC(d = new Date()): number {
   const start = Date.UTC(d.getUTCFullYear(), 0, 1);
@@ -9,11 +11,11 @@ function dayOfYearUTC(d = new Date()): number {
 }
 
 export async function GET() {
-  const idx = dayOfYearUTC() % (words as any[]).length;
+  const idx = dayOfYearUTC() % words.length;
 
-  const word = (words as any[])[idx];
-  const prev = (words as any[])[(idx - 1 + words.length) % words.length];
-  const next = (words as any[])[(idx + 1) % words.length];
+  const word = words[idx];
+  const prev = words[(idx - 1 + words.length) % words.length];
+  const next = words[(idx + 1) % words.length];
 
   return NextResponse.json({
     today: word,
