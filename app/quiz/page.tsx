@@ -1,7 +1,7 @@
 import Quiz from "@/components/Quiz";
 import Link from "next/link";
 
-export const metadata = { title: "Daily Quiz • K-AJC" };
+export const metadata = { title: "Daily Quiz • K-LOL" };
 
 export default function QuizPage() {
   return (

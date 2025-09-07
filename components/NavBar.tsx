@@ -47,7 +47,7 @@ export default function NavBar() {
         }}
       >
         {/* Brand */}
-        <span style={{ fontWeight: 700, marginRight: 10 }}>K-AJC</span>
+        <span style={{ fontWeight: 700, marginRight: 10 }}>K-LOL</span>
 
         {/* Main links */}
         {links.map((l) => {
@@ -103,7 +103,7 @@ export default function NavBar() {
         {/* SNS links */}
         <div style={{ display: "flex", gap: 8, marginLeft: 12 }}>
           <a
-            href="https://www.youtube.com/@K-AJC"
+            href="https://www.youtube.com/@9nyanghea"
             target="_blank"
             rel="noopener noreferrer"
             title="YouTube"
@@ -112,7 +112,7 @@ export default function NavBar() {
             ▶️
           </a>
           <a
-            href="https://www.instagram.com/kajc"
+            href="https://www.instagram.com/9nyanghea"
             target="_blank"
             rel="noopener noreferrer"
             title="Instagram"

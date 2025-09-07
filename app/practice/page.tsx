@@ -1,7 +1,7 @@
 import Link from "next/link";
 import PracticeQuiz from "../../components/PracticeQuiz";
 
-export const metadata = { title: "Practice by Category • K-AJC" };
+export const metadata = { title: "Practice by Category • K-LOL" };
 
 export default function PracticePage() {
   return (

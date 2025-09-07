@@ -6,6 +6,30 @@ import type { Word } from "@/lib/wordSchema";
 import WordActions from "@/components/WordActions";
 import ShareButton from "@/components/ShareButton";
 
+// for dynamic og Image
+
+// import type { Metadata } from "next";
+
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params: { slug: string };
+// }): Promise<Metadata> {
+//   // however you compute idx for the current slug:
+//   const idx = /* getIndexFromSlug(params.slug) */ 0;
+
+//   return {
+//     title: `Word: ${params.slug} — K Word of the Day`,
+//     openGraph: {
+//       images: [`/og?idx=${idx}`], // dynamic OG image
+//     },
+//     twitter: {
+//       card: "summary_large_image",
+//       images: [`/og?idx=${idx}`],
+//     },
+//   };
+// }
+
 export async function generateStaticParams() {
   // Optional: prebuild pages for all words
   const all = getAllWordsValidated();
@@ -22,7 +46,7 @@ export default function WordDetailPage({
 
   if (!word) return notFound();
 
-  const shareTitle = `K-AJC • ${word.word} (${word.romanization})`;
+  const shareTitle = `K-LOL • ${word.word} (${word.romanization})`;
   const shareText = `${word.meaning}\nExample: ${word.example}`;
 
   const related = word.relatedIds?.length
