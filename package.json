@@ -7,7 +7,9 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "validate:words": "tsx scripts/validate-words.ts"
+    "validate:words": "tsx scripts/validate-words.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "check": "pnpm lint && pnpm typecheck"
   },
   "dependencies": {
     "@vercel/og": "^0.8.5",

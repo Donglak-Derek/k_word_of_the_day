@@ -5,52 +5,59 @@ import { getAllWordsValidated } from "@/lib/words";
 import type { Word } from "@/lib/wordSchema";
 import WordActions from "@/components/WordActions";
 import ShareButton from "@/components/ShareButton";
+import type { Metadata } from "next";
 
-// for dynamic og Image
+// ---- Dynamic OG image & title for this word page ----
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
 
-// import type { Metadata } from "next";
+  const all = getAllWordsValidated();
+  const idx = Math.max(
+    0,
+    all.findIndex((w) => w.slug === slug)
+  );
+  const w = all[idx];
 
-// export async function generateMetadata({
-//   params,
-// }: {
-//   params: { slug: string };
-// }): Promise<Metadata> {
-//   // however you compute idx for the current slug:
-//   const idx = /* getIndexFromSlug(params.slug) */ 0;
+  const title = w
+    ? `Word: ${w.word} (${w.romanization}) — K-LOL`
+    : `Word: ${slug} — K-LOL`;
 
-//   return {
-//     title: `Word: ${params.slug} — K Word of the Day`,
-//     openGraph: {
-//       images: [`/og?idx=${idx}`], // dynamic OG image
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       images: [`/og?idx=${idx}`],
-//     },
-//   };
-// }
+  return {
+    title,
+    openGraph: { images: [`/og?idx=${idx}`] },
+    twitter: { card: "summary_large_image", images: [`/og?idx=${idx}`] },
+  };
+}
 
-export async function generateStaticParams() {
-  // Optional: prebuild pages for all words
+// Optional: prebuild pages for all words
+export function generateStaticParams() {
   const all = getAllWordsValidated();
   return all.map((w) => ({ slug: w.slug }));
 }
 
-export default function WordDetailPage({
+export default async function WordDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const all = getAllWordsValidated();
-  const word = all.find((w) => w.slug === params.slug);
+  const { slug } = await params; // <-- Next 15: await params
 
-  if (!word) return notFound();
+  const all: Word[] = getAllWordsValidated();
+  const word = all.find((w) => w.slug === slug);
 
-  const shareTitle = `K-LOL • ${word.word} (${word.romanization})`;
-  const shareText = `${word.meaning}\nExample: ${word.example}`;
+  if (!word) {
+    notFound();
+  }
 
-  const related = word.relatedIds?.length
-    ? all.filter((w) => word.relatedIds!.includes(w.id))
+  const shareTitle = `K-LOL • ${word!.word} (${word!.romanization})`;
+  const shareText = `${word!.meaning}\nExample: ${word!.example}`;
+
+  const related = word!.relatedIds?.length
+    ? all.filter((w) => word!.relatedIds!.includes(w.id))
     : [];
 
   return (
@@ -59,14 +66,14 @@ export default function WordDetailPage({
         <Link href="/archive">← Back to Archive</Link>
       </nav>
 
-      <h1 style={{ fontSize: 42, margin: "6px 0" }}>{word.word}</h1>
+      <h1 style={{ fontSize: 42, margin: "6px 0" }}>{word!.word}</h1>
       <div style={{ fontSize: 16, opacity: 0.8, marginBottom: 8 }}>
-        {word.romanization} • <strong>{word.meaning}</strong>
+        {word!.romanization} • <strong>{word!.meaning}</strong>
       </div>
       <div
         style={{ textTransform: "capitalize", opacity: 0.8, marginBottom: 12 }}
       >
-        Category: <strong>{word.category}</strong>
+        Category: <strong>{word!.category}</strong>
       </div>
 
       <WordActions word={word as Word} />
@@ -78,21 +85,21 @@ export default function WordDetailPage({
       </div>
 
       <p style={{ fontSize: 18, lineHeight: 1.6, marginTop: 16 }}>
-        “{word.example}”
+        “{word!.example}”
       </p>
 
-      {word.notes && (
+      {word!.notes && (
         <section style={{ marginTop: 20 }}>
           <h3 style={{ marginBottom: 8 }}>Notes</h3>
-          <p style={{ opacity: 0.9 }}>{word.notes}</p>
+          <p style={{ opacity: 0.9 }}>{word!.notes}</p>
         </section>
       )}
 
-      {(word.tags?.length || 0) > 0 && (
+      {(word!.tags?.length || 0) > 0 && (
         <section style={{ marginTop: 16 }}>
           <h3 style={{ marginBottom: 8 }}>Tags</h3>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-            {word.tags!.map((t) => (
+            {word!.tags!.map((t) => (
               <span
                 key={t}
                 style={{
@@ -109,11 +116,11 @@ export default function WordDetailPage({
         </section>
       )}
 
-      {(word.synonyms?.length || 0) > 0 && (
+      {(word!.synonyms?.length || 0) > 0 && (
         <section style={{ marginTop: 16 }}>
           <h3 style={{ marginBottom: 8 }}>Synonyms</h3>
           <ul>
-            {word.synonyms!.map((s) => (
+            {word!.synonyms!.map((s) => (
               <li key={s}>{s}</li>
             ))}
           </ul>

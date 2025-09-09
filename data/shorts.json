@@ -1,0 +1,317 @@
+[
+  {
+    "id": "s-0101",
+    "title": "눈치 (Nunchi) — read the room",
+    "topic": "social-skills",
+    "hook": "Can you read the room—Korean style?",
+    "thumb": "/thumbs/s-0101.jpg",
+    "videoUrl": "/videos/s-0101.mp4",
+    "durationSec": 18,
+    "level": "B1",
+    "words": ["w-nunchi"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0101.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0101.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0102",
+    "title": "정 (Jeong) — warm attachment",
+    "topic": "relationships",
+    "hook": "Why ‘정’ is more than love or friendship.",
+    "thumb": "/thumbs/s-0102.jpg",
+    "videoUrl": "/videos/s-0102.mp4",
+    "durationSec": 22,
+    "level": "B1",
+    "words": ["w-jeong"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0102.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0102.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0103",
+    "title": "한 (Han) — a heavy word",
+    "topic": "history",
+    "hook": "A deep, collective feeling in 20 seconds.",
+    "thumb": "/thumbs/s-0103.jpg",
+    "videoUrl": "/videos/s-0103.mp4",
+    "durationSec": 20,
+    "level": "B1",
+    "words": ["w-han"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0103.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0103.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0104",
+    "title": "회식 (Hoesik) — team dinner rules",
+    "topic": "work-culture",
+    "hook": "Your first 회식: what to expect.",
+    "thumb": "/thumbs/s-0104.jpg",
+    "videoUrl": "/videos/s-0104.mp4",
+    "durationSec": 19,
+    "level": "A2",
+    "words": ["w-hoesik"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0104.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0104.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0105",
+    "title": "눈치 없다 — tactless",
+    "topic": "social-skills",
+    "hook": "Don’t be that friend with ‘no nunchi’.",
+    "thumb": "/thumbs/s-0105.jpg",
+    "videoUrl": "/videos/s-0105.mp4",
+    "durationSec": 17,
+    "level": "B1",
+    "words": ["w-nunchi-eopda"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0105.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0105.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0106",
+    "title": "눈치 보다 — gauge reactions",
+    "topic": "work-culture",
+    "hook": "Watching the boss’s mood like a pro.",
+    "thumb": "/thumbs/s-0106.jpg",
+    "videoUrl": "/videos/s-0106.mp4",
+    "durationSec": 21,
+    "level": "B1",
+    "words": ["w-nunchi-boda"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0106.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0106.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0107",
+    "title": "효 (Hyo) — filial piety",
+    "topic": "values",
+    "hook": "Being a good son/daughter, Korean style.",
+    "thumb": "/thumbs/s-0107.jpg",
+    "videoUrl": "/videos/s-0107.mp4",
+    "durationSec": 18,
+    "level": "B1",
+    "words": ["w-hyo"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0107.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0107.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0108",
+    "title": "눈치 게임 — timing game",
+    "topic": "games",
+    "hook": "The silent counting game explained.",
+    "thumb": "/thumbs/s-0108.jpg",
+    "videoUrl": "/videos/s-0108.mp4",
+    "durationSec": 16,
+    "level": "A2",
+    "words": ["w-nunchi-game"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0108.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0108.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0109",
+    "title": "사이다 — so satisfying!",
+    "topic": "slang",
+    "hook": "That ‘ahh’ moment Koreans call 사이다.",
+    "thumb": "/thumbs/s-0109.jpg",
+    "videoUrl": "/videos/s-0109.mp4",
+    "durationSec": 15,
+    "level": "A2",
+    "words": ["w-saida"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0109.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0109.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0110",
+    "title": "갑질 — abuse of power",
+    "topic": "society",
+    "hook": "When power goes to someone’s head.",
+    "thumb": "/thumbs/s-0110.jpg",
+    "videoUrl": "/videos/s-0110.mp4",
+    "durationSec": 23,
+    "level": "B1",
+    "words": ["w-gapjil"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0110.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0110.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0111",
+    "title": "빨리빨리 — hurry culture",
+    "topic": "work-style",
+    "hook": "Fast is the default setting.",
+    "thumb": "/thumbs/s-0111.jpg",
+    "videoUrl": "/videos/s-0111.mp4",
+    "durationSec": 17,
+    "level": "A2",
+    "words": ["w-ppalli-ppalli"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0111.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0111.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0112",
+    "title": "눈치껏 — tactfully",
+    "topic": "social-skills",
+    "hook": "Handle it… tactfully (눈치껏).",
+    "thumb": "/thumbs/s-0112.jpg",
+    "videoUrl": "/videos/s-0112.mp4",
+    "durationSec": 16,
+    "level": "B1",
+    "words": ["w-nunchikkeot"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0112.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0112.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0113",
+    "title": "엄친아 — the perfect kid",
+    "topic": "society",
+    "hook": "Mom’s friend’s perfect son (pressure trope).",
+    "thumb": "/thumbs/s-0113.jpg",
+    "videoUrl": "/videos/s-0113.mp4",
+    "durationSec": 19,
+    "level": "B1",
+    "words": ["w-eomchina"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0113.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0113.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0114",
+    "title": "애교 — cute charm",
+    "topic": "pop-culture",
+    "hook": "Too cute? That’s 애교.",
+    "thumb": "/thumbs/s-0114.jpg",
+    "videoUrl": "/videos/s-0114.mp4",
+    "durationSec": 15,
+    "level": "A2",
+    "words": ["w-aegyo"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0114.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0114.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0115",
+    "title": "소맥 — soju + beer",
+    "topic": "drinking-culture",
+    "hook": "Mix somaek like a local.",
+    "thumb": "/thumbs/s-0115.jpg",
+    "videoUrl": "/videos/s-0115.mp4",
+    "durationSec": 18,
+    "level": "A2",
+    "words": ["w-somaek"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0115.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0115.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0116",
+    "title": "안주 — drinking snacks",
+    "topic": "food-culture",
+    "hook": "Snacks made for drinks.",
+    "thumb": "/thumbs/s-0116.jpg",
+    "videoUrl": "/videos/s-0116.mp4",
+    "durationSec": 16,
+    "level": "A2",
+    "words": ["w-anju"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0116.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0116.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0117",
+    "title": "건배 — a formal cheers",
+    "topic": "drinking-culture",
+    "hook": "‘Cheers’ the formal way: 건배!",
+    "thumb": "/thumbs/s-0117.jpg",
+    "videoUrl": "/videos/s-0117.mp4",
+    "durationSec": 12,
+    "level": "A1",
+    "words": ["w-geonbae"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0117.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0117.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0118",
+    "title": "치맥 — chicken + beer",
+    "topic": "food-culture",
+    "hook": "Why chimaek is legendary.",
+    "thumb": "/thumbs/s-0118.jpg",
+    "videoUrl": "/videos/s-0118.mp4",
+    "durationSec": 17,
+    "level": "A2",
+    "words": ["w-chimaek"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0118.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0118.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0119",
+    "title": "막내 — the youngest",
+    "topic": "group-dynamics",
+    "hook": "The team’s youngest and their duties.",
+    "thumb": "/thumbs/s-0119.jpg",
+    "videoUrl": "/videos/s-0119.mp4",
+    "durationSec": 16,
+    "level": "A2",
+    "words": ["w-maknae"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0119.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0119.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0120",
+    "title": "선배 — senior",
+    "topic": "hierarchy",
+    "hook": "Respecting seniors at school/work.",
+    "thumb": "/thumbs/s-0120.jpg",
+    "videoUrl": "/videos/s-0120.mp4",
+    "durationSec": 18,
+    "level": "A2",
+    "words": ["w-seonbae"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0120.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0120.en.vtt" }
+    ]
+  },
+  {
+    "id": "s-0121",
+    "title": "후배 — junior",
+    "topic": "hierarchy",
+    "hook": "Looking after your juniors.",
+    "thumb": "/thumbs/s-0121.jpg",
+    "videoUrl": "/videos/s-0121.mp4",
+    "durationSec": 18,
+    "level": "A2",
+    "words": ["w-hubae"],
+    "captions": [
+      { "lang": "ko", "vtt": "/captions/s-0121.ko.vtt" },
+      { "lang": "en", "vtt": "/captions/s-0121.en.vtt" }
+    ]
+  }
+]

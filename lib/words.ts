@@ -6,9 +6,15 @@ import slangRaw from "@/data/words/slang.json";
 import everydayRaw from "@/data/words/everyday.json";
 import workRaw from "@/data/words/work.json";
 
-function validateArray(raw: unknown[], label: string): Word[] {
+type Labeled = { w: Word; src: string };
+
+function validateArrayLabeled(raw: unknown[], label: string): Labeled[] {
   try {
-    return (raw as unknown[]).map((w) => WordZ.parse(w));
+    return (raw as unknown[]).map((x, i) => {
+      const w = WordZ.parse(x);
+      // we can't get the real line, but index helps you find it
+      return { w, src: `${label}.json[${i}]` };
+    });
   } catch (e) {
     throw new Error(
       `Validation failed for ${label}.json: ${(e as Error).message}`
@@ -17,23 +23,38 @@ function validateArray(raw: unknown[], label: string): Word[] {
 }
 
 export function getAllWordsValidated(): Word[] {
-  const culture = validateArray(cultureRaw as unknown[], "culture");
-  const slang = validateArray(slangRaw as unknown[], "slang");
-  const everyday = validateArray(everydayRaw as unknown[], "everyday");
-  const work = validateArray(workRaw as unknown[], "work");
+  const chunks: Labeled[][] = [
+    validateArrayLabeled(cultureRaw as unknown[], "culture"),
+    validateArrayLabeled(slangRaw as unknown[], "slang"),
+    validateArrayLabeled(everydayRaw as unknown[], "everyday"),
+    validateArrayLabeled(workRaw as unknown[], "work"),
+  ];
 
-  const all = [...culture, ...slang, ...everyday, ...work];
+  const allLabeled: Labeled[] = chunks.flat();
 
-  // duplicate id guard (nice safety)
-  const ids = new Set<string>(),
-    slugs = new Set<string>();
-  for (const w of all) {
-    if (ids.has(w.id)) throw new Error(`Duplicate id: ${w.id}`);
-    if (slugs.has(w.slug)) throw new Error(`Duplicate slug: ${w.slug}`);
-    ids.add(w.id);
-    slugs.add(w.slug);
+  // duplicate guard with file reporting
+  const idToSrc = new Map<string, string>();
+  const slugToSrc = new Map<string, string>();
+
+  for (const { w, src } of allLabeled) {
+    const prevIdSrc = idToSrc.get(w.id);
+    if (prevIdSrc) {
+      throw new Error(
+        `Duplicate id "${w.id}" found in ${src} and ${prevIdSrc}`
+      );
+    }
+    idToSrc.set(w.id, src);
+
+    const prevSlugSrc = slugToSrc.get(w.slug);
+    if (prevSlugSrc) {
+      throw new Error(
+        `Duplicate slug "${w.slug}" found in ${src} and ${prevSlugSrc}`
+      );
+    }
+    slugToSrc.set(w.slug, src);
   }
-  return all;
+
+  return allLabeled.map(({ w }) => w);
 }
 
 export function getByCategory(cat: string): Word[] {
