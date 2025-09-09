@@ -1,57 +1,101 @@
 [
   {
-    "id": "hwesik",
-    "slug": "hwesik",
-    "word": "회식",
-    "romanization": "hwesik",
-    "meaning": "Company dinner",
-    "example": "We had a 회식 after finishing the project.",
+    "id": "w-work-chulgeun",
+    "slug": "chulgeun-work",
+    "word": "출근",
+    "romanization": "chulgeun",
+    "meaning": "going to work; clocking in",
+    "example": "오늘 9시에 출근해요.",
+    "examples": [
+      { "ko": "오늘 9시에 출근해요.", "en": "I go to work at 9 today." }
+    ],
     "category": "work",
-    "tags": ["office-culture"],
-    "level": "intermediate"
+    "tags": ["workplace", "schedule"],
+    "level": "A2",
+    "synonyms": ["근무 시작"],
+    "notes": "Verb form is 출근하다 (to go to work).",
+    "pos": "noun",
+    "shortId": "s-0101"
   },
   {
-    "id": "seonsaengnim",
-    "slug": "seonsaengnim",
-    "word": "선생님",
-    "romanization": "seonsaengnim",
-    "meaning": "Teacher / polite title",
-    "example": "Always call your instructor 선생님.",
+    "id": "w-work-toegeun",
+    "slug": "toegeun-work",
+    "word": "퇴근",
+    "romanization": "toegeun",
+    "meaning": "leaving work; clocking out",
+    "example": "보통 몇 시에 퇴근하세요?",
+    "examples": [
+      {
+        "ko": "보통 몇 시에 퇴근하세요?",
+        "en": "What time do you usually get off work?"
+      }
+    ],
     "category": "work",
-    "tags": ["title"],
-    "level": "beginner"
+    "tags": ["workplace", "schedule"],
+    "level": "A2",
+    "synonyms": ["근무 종료"],
+    "notes": "Verb form is 퇴근하다 (to leave work).",
+    "pos": "noun",
+    "shortId": "s-0102"
   },
   {
-    "id": "hoegye",
-    "slug": "hoegye",
+    "id": "w-work-hoeui",
+    "slug": "hoeui-work",
     "word": "회의",
     "romanization": "hoeui",
-    "meaning": "Meeting",
-    "example": "The team has a 회의 every Monday morning.",
+    "meaning": "meeting",
+    "example": "오후에 팀 회의가 있어요.",
+    "examples": [
+      {
+        "ko": "오후에 팀 회의가 있어요.",
+        "en": "We have a team meeting this afternoon."
+      }
+    ],
     "category": "work",
-    "tags": ["office"],
-    "level": "beginner"
+    "tags": ["office", "communication"],
+    "level": "A2",
+    "synonyms": ["미팅"],
+    "notes": "미팅 is a casual Konglish word for 'meeting'.",
+    "pos": "noun",
+    "shortId": "s-0103"
   },
   {
-    "id": "daeri",
-    "slug": "daeri",
-    "word": "대리",
-    "romanization": "daeri",
-    "meaning": "Assistant manager (job title)",
-    "example": "She got promoted to 대리 last year.",
+    "id": "w-work-magam",
+    "slug": "magam-work",
+    "word": "마감",
+    "romanization": "magam",
+    "meaning": "deadline; closing",
+    "example": "마감이 내일까지예요.",
+    "examples": [
+      { "ko": "마감이 내일까지예요.", "en": "The deadline is until tomorrow." }
+    ],
     "category": "work",
-    "tags": ["rank"],
-    "level": "intermediate"
+    "tags": ["deadline", "project"],
+    "level": "B1",
+    "synonyms": ["마감일", "데드라인"],
+    "notes": "마감일 means the specific deadline date.",
+    "pos": "noun",
+    "shortId": "s-0104"
   },
   {
-    "id": "pyeongga",
-    "slug": "pyeongga",
-    "word": "평가",
-    "romanization": "pyeongga",
-    "meaning": "Evaluation",
-    "example": "We had an annual 평가 with our manager.",
+    "id": "w-work-bogoseo",
+    "slug": "bogoseo-work",
+    "word": "보고서",
+    "romanization": "bogoseo",
+    "meaning": "report",
+    "example": "보고서를 오늘 안에 제출해 주세요.",
+    "examples": [
+      {
+        "ko": "보고서를 오늘 안에 제출해 주세요.",
+        "en": "Please submit the report by today."
+      }
+    ],
     "category": "work",
-    "tags": ["office"],
-    "level": "advanced"
+    "tags": ["documents", "office"],
+    "level": "B1",
+    "synonyms": ["리포트"],
+    "notes": "제출하다 = to submit.",
+    "pos": "noun",
+    "shortId": "s-0105"
   }
 ]

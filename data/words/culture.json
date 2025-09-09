@@ -1,58 +1,102 @@
 [
   {
-    "id": "nunchi",
-    "slug": "nunchi",
-    "word": "눈치",
-    "romanization": "nunchi",
-    "meaning": "Ability to read the room",
-    "example": "He clapped at the wrong time during the wedding… zero 눈치.",
-    "category": "culture",
-    "tags": ["social-skills"],
-    "level": "intermediate",
-    "synonyms": ["분위기 파악"],
-    "notes": "Essential Korean cultural skill."
-  },
-  {
-    "id": "jeong",
-    "slug": "jeong",
+    "id": "w-culture-jeong",
+    "slug": "jeong-culture",
     "word": "정",
     "romanization": "jeong",
-    "meaning": "Deep emotional bond or attachment",
-    "example": "Even after the breakup, there was still 정 between them.",
+    "meaning": "deep affectionate bond; warmth; emotional attachment",
+    "example": "한국 사람들 사이에는 정이 많아요.",
+    "examples": [
+      {
+        "ko": "한국 사람들 사이에는 정이 많아요.",
+        "en": "There is a lot of jeong among Korean people."
+      }
+    ],
     "category": "culture",
-    "tags": ["emotion"],
-    "level": "advanced"
+    "tags": ["core-concept", "relationships", "values"],
+    "level": "B1",
+    "synonyms": ["정서적 유대", "애정"],
+    "notes": "A uniquely Korean idea of warm, enduring attachment formed through shared experience.",
+    "pos": "noun",
+    "shortId": "s-0101"
   },
   {
-    "id": "han",
-    "slug": "han",
+    "id": "w-culture-han",
+    "slug": "han-culture",
     "word": "한",
     "romanization": "han",
-    "meaning": "Collective sorrow / deep resentment",
-    "example": "Korean literature often reflects the feeling of 한.",
+    "meaning": "collective sorrow; deep, unresolved grief or resentment",
+    "example": "그 노래에는 한이 서려 있어요.",
+    "examples": [
+      {
+        "ko": "그 노래에는 한이 서려 있어요.",
+        "en": "That song is imbued with han."
+      }
+    ],
     "category": "culture",
-    "level": "advanced"
+    "tags": ["emotion", "history", "core-concept"],
+    "level": "B2",
+    "synonyms": ["응어리", "원한"],
+    "notes": "A complex cultural sentiment; not a simple 'grudge'—often expressed in art and music.",
+    "pos": "noun",
+    "shortId": "s-0102"
   },
   {
-    "id": "chimaek",
-    "slug": "chimaek",
-    "word": "치맥",
-    "romanization": "chimaek",
-    "meaning": "Chicken and beer combo",
-    "example": "Friday night? Let’s have 치맥!",
+    "id": "w-culture-nunchi",
+    "slug": "nunchi-culture",
+    "word": "눈치",
+    "romanization": "nunchi",
+    "meaning": "social awareness; ability to read the room",
+    "example": "눈치가 빠르네요!",
+    "examples": [{ "ko": "눈치가 빠르네요!", "en": "You catch on quickly!" }],
     "category": "culture",
-    "tags": ["food", "social"],
-    "level": "beginner"
+    "tags": ["social-skills", "etiquette", "communication"],
+    "level": "intermediate",
+    "synonyms": ["분위기 파악", "기류 파악"],
+    "notes": "Critical soft skill in Korean social settings—timing, tone, and subtle cues.",
+    "pos": "noun",
+    "shortId": "s-0103"
   },
   {
-    "id": "kimjang",
-    "slug": "kimjang",
-    "word": "김장",
-    "romanization": "kimjang",
-    "meaning": "Kimchi-making season",
-    "example": "Families gather every winter for 김장.",
+    "id": "w-culture-hyo",
+    "slug": "hyo-culture",
+    "word": "효",
+    "romanization": "hyo",
+    "meaning": "filial piety; respect and care for parents",
+    "example": "효를 실천하려고 부모님을 자주 찾아뵈어요.",
+    "examples": [
+      {
+        "ko": "효를 실천하려고 부모님을 자주 찾아뵈어요.",
+        "en": "I practice hyo by visiting my parents often."
+      }
+    ],
     "category": "culture",
-    "tags": ["tradition"],
-    "level": "intermediate"
+    "tags": ["values", "family", "ethics"],
+    "level": "A2",
+    "synonyms": ["효도"],
+    "notes": "A traditional virtue emphasizing duty and respect toward one's parents.",
+    "pos": "noun",
+    "shortId": "s-0104"
+  },
+  {
+    "id": "w-culture-ppallippalli",
+    "slug": "ppallippalli-culture",
+    "word": "빨리빨리",
+    "romanization": "ppallippalli",
+    "meaning": "the 'hurry-hurry' mindset; preference for speed and efficiency",
+    "example": "한국은 빨리빨리 문화가 있어요.",
+    "examples": [
+      {
+        "ko": "한국은 빨리빨리 문화가 있어요.",
+        "en": "Korea has a 'ppalli-ppalli' culture."
+      }
+    ],
+    "category": "culture",
+    "tags": ["work-style", "speed", "modern-culture"],
+    "level": "B1",
+    "synonyms": ["신속", "속전속결"],
+    "notes": "Shorthand for Korea’s fast-paced approach to daily life, work, and services.",
+    "pos": "expression",
+    "shortId": "s-0105"
   }
 ]

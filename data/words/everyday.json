@@ -1,54 +1,90 @@
 [
   {
-    "id": "bap",
-    "slug": "bap",
-    "word": "밥",
-    "romanization": "bap",
-    "meaning": "Cooked rice / Meal",
-    "example": "Did you eat 밥 yet?",
+    "id": "w-everyday-annyeonghaseyo",
+    "slug": "annyeonghaseyo-everyday",
+    "word": "안녕하세요",
+    "romanization": "annyeonghaseyo",
+    "meaning": "hello (polite)",
+    "example": "안녕하세요? 처음 뵙겠습니다.",
+    "examples": [
+      { "ko": "안녕하세요? 처음 뵙겠습니다.", "en": "Hello, nice to meet you." }
+    ],
     "category": "everyday",
-    "tags": ["food"],
-    "level": "beginner"
+    "tags": ["greetings", "politeness"],
+    "level": "A1",
+    "synonyms": ["안녕", "안녕하십니까"],
+    "notes": "Standard polite greeting used in most situations.",
+    "pos": "phrase",
+    "shortId": "s-0002"
   },
   {
-    "id": "ppalli",
-    "slug": "ppalli",
-    "word": "빨리",
-    "romanization": "ppalli",
-    "meaning": "Quickly / Hurry",
-    "example": "빨리 와! We’re late.",
+    "id": "w-everyday-gamsahamnida",
+    "slug": "gamsahamnida-everyday",
+    "word": "감사합니다",
+    "romanization": "gamsahamnida",
+    "meaning": "thank you (polite)",
+    "example": "도와주셔서 감사합니다.",
+    "examples": [
+      { "ko": "도와주셔서 감사합니다.", "en": "Thank you for your help." }
+    ],
     "category": "everyday",
-    "tags": ["speed"],
-    "level": "beginner"
+    "tags": ["politeness", "gratitude"],
+    "level": "A1",
+    "synonyms": ["고맙습니다", "고마워요"],
+    "notes": "More polite/formal than '고마워요'.",
+    "pos": "phrase",
+    "shortId": "s-0003"
   },
   {
-    "id": "mul",
-    "slug": "mul",
-    "word": "물",
-    "romanization": "mul",
-    "meaning": "Water",
-    "example": "Can I get some 물, please?",
+    "id": "w-everyday-joesonghamnida",
+    "slug": "joesonghamnida-everyday",
+    "word": "죄송합니다",
+    "romanization": "joesonghamnida",
+    "meaning": "I'm sorry (formal apology)",
+    "example": "늦어서 죄송합니다.",
+    "examples": [
+      { "ko": "늦어서 죄송합니다.", "en": "I'm sorry for being late." }
+    ],
     "category": "everyday",
-    "level": "beginner"
+    "tags": ["apology", "politeness"],
+    "level": "A2",
+    "synonyms": ["미안합니다", "미안해요"],
+    "notes": "Stronger/more formal than '미안해요'.",
+    "pos": "phrase",
+    "shortId": "s-0004"
   },
   {
-    "id": "jip",
-    "slug": "jip",
-    "word": "집",
-    "romanization": "jip",
-    "meaning": "House / Home",
-    "example": "Let’s meet at my 집.",
+    "id": "w-everyday-gwaenchanayo",
+    "slug": "gwaenchanayo-everyday",
+    "word": "괜찮아요",
+    "romanization": "gwaenchanayo",
+    "meaning": "it's okay; I'm fine / are you okay?",
+    "example": "괜찮아요, 천천히 하세요.",
+    "examples": [
+      { "ko": "괜찮아요, 천천히 하세요.", "en": "It's okay, take your time." }
+    ],
     "category": "everyday",
-    "level": "beginner"
+    "tags": ["reassurance", "small-talk"],
+    "level": "A2",
+    "synonyms": ["괜찮습니다", "괜찮아"],
+    "notes": "Polite form; very common everyday response.",
+    "pos": "phrase",
+    "shortId": "s-0005"
   },
   {
-    "id": "chingu",
-    "slug": "chingu",
-    "word": "친구",
-    "romanization": "chingu",
-    "meaning": "Friend",
-    "example": "He’s my best 친구.",
+    "id": "w-everyday-eolmayeyo",
+    "slug": "eolmayeyo-everyday",
+    "word": "얼마예요?",
+    "romanization": "eolmayeyo",
+    "meaning": "how much is it?",
+    "example": "이거 얼마예요?",
+    "examples": [{ "ko": "이거 얼마예요?", "en": "How much is this?" }],
     "category": "everyday",
-    "level": "beginner"
+    "tags": ["shopping", "money"],
+    "level": "A1",
+    "synonyms": ["가격이 얼마예요?"],
+    "notes": "Useful question for markets, shops, and cafés.",
+    "pos": "phrase",
+    "shortId": "s-0006"
   }
 ]

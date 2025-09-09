@@ -1,55 +1,108 @@
 [
   {
-    "id": "hwaiting",
-    "slug": "hwaiting",
-    "word": "화이팅",
-    "romanization": "hwaiting",
-    "meaning": "Cheer up / You got this!",
-    "example": "Before the test: '화이팅!'",
+    "id": "w-slang-daebak",
+    "slug": "daebak-slang",
+    "word": "대박",
+    "romanization": "daebak",
+    "meaning": "awesome; unbelievable; jackpot",
+    "example": "와, 대박!",
+    "examples": [
+      { "ko": "와, 대박!", "en": "Wow, awesome!", "rom": "wa, daebak!" }
+    ],
     "category": "slang",
-    "level": "beginner"
+    "tags": ["excitement", "reaction", "youth"],
+    "level": "A2",
+    "synonyms": ["굉장해", "최고"],
+    "notes": "Very common exclamation in casual speech and online.",
+    "pos": "interjection",
+    "shortId": "s-0002"
   },
   {
-    "id": "kkondae",
-    "slug": "kkondae",
-    "word": "꼰대",
-    "romanization": "kkondae",
-    "meaning": "Old-fashioned, bossy person",
-    "example": "My boss is a 꼰대, always saying 'back in my day...'.",
+    "id": "w-slang-inssa",
+    "slug": "inssa-slang",
+    "word": "인싸",
+    "romanization": "inssa",
+    "meaning": "insider; a popular person who’s in the loop",
+    "example": "요즘 그는 완전 인싸야.",
+    "examples": [
+      {
+        "ko": "요즘 그는 완전 인싸야.",
+        "en": "These days he’s totally an insider.",
+        "rom": "yojeum geuneun wanjeon inssa-ya."
+      }
+    ],
     "category": "slang",
-    "level": "intermediate"
+    "tags": ["social", "identity", "youth"],
+    "level": "B1",
+    "synonyms": ["인기인", "핵인싸"],
+    "notes": "Opposite slang: 아싸 (outsider).",
+    "pos": "noun",
+    "shortId": "s-0003"
   },
   {
-    "id": "jjan",
-    "slug": "jjan",
-    "word": "짠",
-    "romanization": "jjan",
-    "meaning": "Cheers! (clinking glasses)",
-    "example": "Raise your glass: 짠!",
+    "id": "w-slang-nojaem",
+    "slug": "nojaem-slang",
+    "word": "노잼",
+    "romanization": "nojaem",
+    "meaning": "not fun; boring",
+    "example": "이 영화 노잼이야.",
+    "examples": [
+      {
+        "ko": "이 영화 노잼이야.",
+        "en": "This movie is no fun.",
+        "rom": "i yeonghwa nojaem-iya."
+      }
+    ],
     "category": "slang",
-    "tags": ["drinking"],
-    "level": "beginner"
+    "tags": ["opinion", "internet", "contrast-꿀잼"],
+    "level": "A2",
+    "synonyms": ["재미없다", "지루하다"],
+    "notes": "Opposite: 꿀잼 (= super fun).",
+    "pos": "expression",
+    "shortId": "s-0004"
   },
   {
-    "id": "otoke",
-    "slug": "otoke",
-    "word": "어떡해",
-    "romanization": "eotteokhae",
-    "meaning": "Oh no! / What should I do?",
-    "example": "You dropped your phone? '어떡해!'",
+    "id": "w-slang-noejeol",
+    "slug": "noejeol-slang",
+    "word": "뇌절",
+    "romanization": "noejeol",
+    "meaning": "going too far; beating a joke to death",
+    "example": "그 농담 뇌절했어.",
+    "examples": [
+      {
+        "ko": "그 농담 뇌절했어.",
+        "en": "That joke went way too far.",
+        "rom": "geu nongjam noejeol-haesseo."
+      }
+    ],
     "category": "slang",
-    "tags": ["reaction"],
-    "level": "beginner"
+    "tags": ["internet", "meme-culture", "etiquette"],
+    "level": "B1",
+    "synonyms": ["과하다", "선 넘었다"],
+    "notes": "Often used online to say someone should have stopped earlier.",
+    "pos": "expression",
+    "shortId": "s-0005"
   },
   {
-    "id": "meokbang",
-    "slug": "meokbang",
-    "word": "먹방",
-    "romanization": "meokbang",
-    "meaning": "Food-eating broadcast",
-    "example": "She became famous with her YouTube 먹방 videos.",
+    "id": "w-slang-gapbunssa",
+    "slug": "gapbunssa-slang",
+    "word": "갑분싸",
+    "romanization": "gapbunssa",
+    "meaning": "mood killer; sudden awkward silence",
+    "example": "그 말에 갑분싸 됐어.",
+    "examples": [
+      {
+        "ko": "그 말에 갑분싸 됐어.",
+        "en": "That comment killed the mood.",
+        "rom": "geu mar-e gapbunssa dwaesseo."
+      }
+    ],
     "category": "slang",
-    "tags": ["internet"],
-    "level": "intermediate"
+    "tags": ["acronym", "social", "awkward"],
+    "level": "B1",
+    "synonyms": ["분위기 싸해지다", "김새다"],
+    "notes": "Acronym of ‘갑자기 분위기 싸해짐’.",
+    "pos": "expression",
+    "shortId": "s-0006"
   }
 ]
